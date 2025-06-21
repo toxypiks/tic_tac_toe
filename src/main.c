@@ -4,6 +4,8 @@
 #include <SDL3/SDL.h>
 
 #include "game.h"
+#include "logic.h"
+#include "rendering.h"
 
 int main(void)
 {
