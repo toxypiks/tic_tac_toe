@@ -26,6 +26,13 @@ int main(void)
         return 1;
     }
 
+    SDL_Renderer *renderer = SDL_CreateRenderer(window, NULL);
+    if (renderer == NULL) {
+        SDL_DestroyWindow(window);
+        fprintf(stderr, "SDL_CreateRenderer Error: %s\n", SDL_GetError());
+        return EXIT_FAILURE;
+    }
+
     while (!done) {
         SDL_Event event;
 
@@ -36,6 +43,9 @@ int main(void)
         }
 
         // Do game logic, present a frame, etc.
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_RenderClear(renderer);
+        SDL_RenderPresent(renderer);
     }
 
     // Close and destroy the window
