@@ -33,6 +33,14 @@ int main(void)
         return EXIT_FAILURE;
     }
 
+    game_t game = {
+        .board = {EMPTY, EMPTY, EMPTY,
+                  EMPTY, EMPTY, EMPTY,
+                  EMPTY, EMPTY, EMPTY},
+        .player = PLAYER_X,
+        .state = RUNNING_STATE
+    };
+
     while (!done) {
         SDL_Event event;
 

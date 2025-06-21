@@ -5,23 +5,27 @@
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
 
-#define RUNNING_STATE 0
-#define TIE_STATE 3
-#define QUIT_STATE 4
+typedef enum Board {
+    EMPTY,
+    BOARD_PLAYER_X,
+    BOARD_PLAYER_O
+} Board;
 
 typedef enum Player {
-    PLAYER_X_WON_STATE,
-    PLAYER_O_WON_STATE
+    PLAYER_X,
+    PLAYER_O
 } Player;
 
 typedef enum State {
-    EMPTY,
-    PLAYER_X,
-    PLAYER_O
+    RUNNING_STATE,
+    PLAYER_X_WON_STATE,
+    PLAYER_O_WON_STATE,
+    TIE_STATE,
+    QUIT_STATE
 } State;
 
 typedef struct game_t {
-    int board[N*N];
+    Board board[N*N];
     Player player;
     State state;
 } game_t;
