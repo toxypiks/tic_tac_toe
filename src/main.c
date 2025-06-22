@@ -41,18 +41,29 @@ int main(void)
         .state = RUNNING_STATE
     };
 
-    while (!done) {
-        SDL_Event event;
+    const float cell_width = SCREEN_WIDTH / N;
+    const float cell_height = SCREEN_HEIGHT / N;
 
+    SDL_Event event;
+    while (game.state != QUIT_STATE) {
         while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_EVENT_QUIT) {
-                done = true;
+            switch (event.type) {
+            case SDL_EVENT_QUIT:
+                game.state = QUIT_STATE;
+                break;
+
+            case SDL_EVENT_MOUSE_BUTTON_DOWN:
+                click_on_cell(&game,
+                              event.button.y / cell_height,
+                              event.button.x / cell_width);
+                              break;
             }
         }
 
         // Do game logic, present a frame, etc.
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
+        render_game(renderer, &game);
         SDL_RenderPresent(renderer);
     }
 
