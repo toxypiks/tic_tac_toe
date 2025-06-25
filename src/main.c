@@ -41,9 +41,6 @@ int main(void)
         .state = RUNNING_STATE
     };
 
-    const float cell_width = SCREEN_WIDTH / N;
-    const float cell_height = SCREEN_HEIGHT / N;
-
     SDL_Event event;
     while (game.state != QUIT_STATE) {
         while (SDL_PollEvent(&event)) {
@@ -54,8 +51,8 @@ int main(void)
 
             case SDL_EVENT_MOUSE_BUTTON_DOWN:
                 click_on_cell(&game,
-                              event.button.y / cell_height,
-                              event.button.x / cell_width);
+                              event.button.y / CELL_HEIGHT,
+                              event.button.x / CELL_WIDTH);
                               break;
             }
         }

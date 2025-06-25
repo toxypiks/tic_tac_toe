@@ -4,6 +4,8 @@
 #define N 3
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
+#define CELL_WIDTH (SCREEN_WIDTH / N)
+#define CELL_HEIGHT (SCREEN_HEIGHT / N)
 
 typedef enum Board {
     EMPTY,
