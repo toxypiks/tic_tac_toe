@@ -15,7 +15,10 @@ void render_grid(SDL_Renderer *renderer, const SDL_Color *color)
         SDL_RenderLine(renderer,
                        i * CELL_WIDTH, 0,
                        i * CELL_WIDTH, SCREEN_HEIGHT);
-    }
+        SDL_RenderLine(renderer,
+                       0, i* CELL_HEIGHT,
+                       SCREEN_WIDTH, i * CELL_HEIGHT);
+                   }
 }
 
 void render_board(SDL_Renderer *renderer,
