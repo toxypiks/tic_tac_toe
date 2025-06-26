@@ -25,7 +25,6 @@ int main(void)
         render_game(&game);
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
             Vector2 mouse_position = GetMousePosition();
-            printf("x : %d, y: %d\n", (int)(mouse_position.x / CELL_WIDTH), (int)(mouse_position.y / CELL_HEIGHT));
             click_on_cell(&game, (int)(mouse_position.y / CELL_HEIGHT), (int)(mouse_position.x / CELL_WIDTH));
                       }
         ClearBackground(GetColor(0x181818AA));
