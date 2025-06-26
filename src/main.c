@@ -14,9 +14,9 @@ int main(void)
     game_t game = {
         .board = {BOARD_PLAYER_O, EMPTY, EMPTY,
                   EMPTY, BOARD_PLAYER_X, EMPTY,
-                  EMPTY, EMPTY, BOARD_PLAYER_X},
+                  EMPTY, EMPTY, EMPTY},
         .player = PLAYER_X,
-        .state = RUNNING_STATE
+        .state = TIE_STATE
     };
 
     while(!WindowShouldClose()) {
