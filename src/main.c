@@ -12,9 +12,9 @@ int main(void)
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "procedural");
 
     game_t game = {
-        .board = {EMPTY, EMPTY, EMPTY,
-                  EMPTY, EMPTY, EMPTY,
-                  EMPTY, EMPTY, EMPTY},
+        .board = {BOARD_PLAYER_X, EMPTY, EMPTY,
+                  EMPTY, BOARD_PLAYER_X, EMPTY,
+                  EMPTY, EMPTY, BOARD_PLAYER_X},
         .player = PLAYER_X,
         .state = RUNNING_STATE
     };

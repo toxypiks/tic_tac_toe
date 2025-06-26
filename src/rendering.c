@@ -25,9 +25,13 @@ void render_x(int row, int column, Color color)
     const float center_x = CELL_WIDTH * 0.5 + column * CELL_WIDTH;
     const float center_y = CELL_HEIGHT * 0.5 + row * CELL_HEIGHT;
 
-    Vector2 startPos = {center_x - half_box_side, center_y - half_box_side};
-    Vector2 endPos = {center_x + half_box_side, center_y + half_box_side};
-    DrawLineEx(startPos, endPos, 10, color);
+    Vector2 start_pos_1 = {center_x - half_box_side, center_y - half_box_side};
+    Vector2 end_pos_1 = {center_x + half_box_side, center_y + half_box_side};
+    DrawLineEx(start_pos_1, end_pos_1, 10, color);
+
+    Vector2 start_pos_2 = {center_x + half_box_side, center_y - half_box_side};
+    Vector2 end_pos_2 = {center_x - half_box_side, center_y + half_box_side};
+    DrawLineEx(start_pos_2, end_pos_2, 10, color);
 }
 
 void render_o(int row, int column, const Color color)
