@@ -14,6 +14,7 @@ typedef enum Board {
 } Board;
 
 typedef enum Player {
+    DEFAULT,
     PLAYER_X,
     PLAYER_O
 } Player;
