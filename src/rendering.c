@@ -36,6 +36,12 @@ void render_x(int row, int column, Color color)
 
 void render_o(int row, int column, const Color color)
 {
+    const float half_box_side = fmin(CELL_WIDTH, CELL_HEIGHT) * 0.25;
+    const float center_x = CELL_WIDTH * 0.5 + column * CELL_WIDTH;
+    const float center_y = CELL_HEIGHT * 0.5 + row * CELL_HEIGHT;
+
+    DrawCircle(center_x, center_y, half_box_side, color);
+    DrawCircle(center_x, center_y, half_box_side - 10, GetColor(0x181818FF));
 
 }
 

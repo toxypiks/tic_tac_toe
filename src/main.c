@@ -12,7 +12,7 @@ int main(void)
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "procedural");
 
     game_t game = {
-        .board = {BOARD_PLAYER_X, EMPTY, EMPTY,
+        .board = {BOARD_PLAYER_O, EMPTY, EMPTY,
                   EMPTY, BOARD_PLAYER_X, EMPTY,
                   EMPTY, EMPTY, BOARD_PLAYER_X},
         .player = PLAYER_X,
