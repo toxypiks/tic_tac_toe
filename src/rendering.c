@@ -21,12 +21,35 @@ void render_grid(SDL_Renderer *renderer, const SDL_Color *color)
                    }
 }
 
+void render_x(SDL_Renderer *renderer, int row, int column, const SDL_Color *color)
+{
+
+}
+
+void render_o(SDL_Renderer *renderer, int row, int column, const SDL_Color *color)
+{
+
+}
+
 void render_board(SDL_Renderer *renderer,
                   const Board *board,
                   const SDL_Color *player_x_color,
                   const SDL_Color *player_o_color)
 {
+    for (size_t i = 0; i < N; ++i) {
+        for (int j = 0; j < N; ++j) {
+            switch(board[i * N + j]) {
+            case PLAYER_X:
+                render_x(renderer, i, j, player_x_color);
+                break;
 
+            case PLAYER_O:
+                render_o(renderer, i , j, player_o_color);
+                break;
+            default: {}
+            }
+        }
+    }
 }
 
 void render_running_state(SDL_Renderer *renderer, const game_t *game)
