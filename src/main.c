@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <SDL3/SDL.h>
+#include <raylib.h>
 
 #include "game.h"
 #include "logic.h"
@@ -9,29 +9,7 @@
 
 int main(void)
 {
-    SDL_Window *window;                    // Declare a pointer
-    bool done = false;
-
-    if (SDL_Init(SDL_INIT_VIDEO) != true) {
-        fprintf(stderr, "Could not initialize sdl3: %s\n", SDL_GetError());
-        return EXIT_FAILURE;
-    }
-
-    window = SDL_CreateWindow("Procedural", SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
-
-    // Check that the window was successfully created
-    if (window == NULL) {
-        // In the case that the window could not be made...
-        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create window: %s\n", SDL_GetError());
-        return 1;
-    }
-
-    SDL_Renderer *renderer = SDL_CreateRenderer(window, NULL);
-    if (renderer == NULL) {
-        SDL_DestroyWindow(window);
-        fprintf(stderr, "SDL_CreateRenderer Error: %s\n", SDL_GetError());
-        return EXIT_FAILURE;
-    }
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "procedural");
 
     game_t game = {
         .board = {EMPTY, EMPTY, EMPTY,
@@ -41,33 +19,19 @@ int main(void)
         .state = RUNNING_STATE
     };
 
-    SDL_Event event;
-    while (game.state != QUIT_STATE) {
-        while (SDL_PollEvent(&event)) {
-            switch (event.type) {
-            case SDL_EVENT_QUIT:
-                game.state = QUIT_STATE;
-                break;
+    while(!WindowShouldClose()) {
+        if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+            Vector2 mouse_position = GetMousePosition();
+            click_on_cell(&game,
+                          mouse_position.y / CELL_HEIGHT,
+                          mouse_position.x / CELL_WIDTH);
+                      }
+        BeginDrawing();
+        render_game(&game);
+        ClearBackground(GetColor(0x181818AA));
+        EndDrawing();
 
-            case SDL_EVENT_MOUSE_BUTTON_DOWN:
-                click_on_cell(&game,
-                              event.button.y / CELL_HEIGHT,
-                              event.button.x / CELL_WIDTH);
-                              break;
-            }
-        }
-
-        // Do game logic, present a frame, etc.
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-        SDL_RenderClear(renderer);
-        render_game(renderer, &game);
-        SDL_RenderPresent(renderer);
     }
-
-    // Close and destroy the window
-    SDL_DestroyWindow(window);
-
-    // Clean up
-    SDL_Quit();
+    CloseWindow();
     return 0;
 }
