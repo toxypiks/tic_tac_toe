@@ -9,7 +9,7 @@
 
 int main(void)
 {
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "procedural");
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "imperative");
 
     game_t game = {
         .board = {EMPTY, EMPTY, EMPTY,
